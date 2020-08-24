@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2020.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\scoringC.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\scoringC.dir/objects.a @CMakeFiles\scoringC.dir\objects1.rsp
+C:\MinGW\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\scoringC.dir/objects.a -Wl,--no-whole-archive  -o scoringC.exe -Wl,--out-implib,libscoringC.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\scoringC.dir\linklibs.rsp

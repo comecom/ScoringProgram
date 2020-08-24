@@ -1,0 +1,3 @@
+C:/Users/immer_000/CLionProjects/ScoringProgram/cmake-build-debug/CMakeFiles/scoringC.dir
+C:/Users/immer_000/CLionProjects/ScoringProgram/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/immer_000/CLionProjects/ScoringProgram/cmake-build-debug/CMakeFiles/rebuild_cache.dir
