@@ -6,7 +6,23 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/immer_000/CLionProjects/ScoringProgram/main.cpp
+C:/Users/immer_000/CLionProjects/ScoringProgram/file.cpp
+file.h
+C:/Users/immer_000/CLionProjects/ScoringProgram/file.h
+
+C:/Users/immer_000/CLionProjects/ScoringProgram/file.h
+iostream
+-
+string
+-
+fstream
+-
+
+C:/Users/immer_000/CLionProjects/ScoringProgram/func.cpp
+func.h
+C:/Users/immer_000/CLionProjects/ScoringProgram/func.h
+
+C:/Users/immer_000/CLionProjects/ScoringProgram/func.h
 iostream
 -
 io.h
@@ -15,4 +31,10 @@ string
 -
 vector
 -
+
+C:/Users/immer_000/CLionProjects/ScoringProgram/main.cpp
+func.cpp
+C:/Users/immer_000/CLionProjects/ScoringProgram/func.cpp
+file.cpp
+C:/Users/immer_000/CLionProjects/ScoringProgram/file.cpp
 
