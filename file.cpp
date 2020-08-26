@@ -24,7 +24,7 @@ void file::executeFile() {
 //get file content
 void file::getFile() {
     char inputString[MAX_LINE];
-    ifstream inFile(filepath + ".c"); //filepath + '.c' = "C:/..../test22/20151625.c"
+    ifstream inFile(filepath + ".c"); //filepath + '.c' = "C:/..../c_test/20151625.c"
 
     while(!inFile.eof()){
         inFile.getline(inputString, MAX_LINE);

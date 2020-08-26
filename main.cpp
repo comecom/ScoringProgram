@@ -7,7 +7,7 @@
 
 int main()
 {
-    string location = "C:/Users/immer_000/Desktop/test22/";
+    string location = "C:/Users/immer_000/Desktop/c_test/";
 
     //files = [20151234.c, 20151625.c ... ]    all .c files in vector "files"
     vector<string> files = GetFiles(location, "*.c");//file filter = '.c'
@@ -25,7 +25,7 @@ int main()
         //tokens[1] = ".c"
         vector<string> tokens = tokenize(filename, '.');
 
-        //filepath = "C:/Users/immer_000/Desktop/test22/"20151625"
+        //filepath = "C:/Users/immer_000/Desktop/c_test/"20151625"
         string filepath = location + tokens[0];
 
         //make file object
