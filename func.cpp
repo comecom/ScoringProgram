@@ -26,3 +26,13 @@ vector<string> GetFiles(const string& location, const string& _filter){
 
     return return_files;
 }
+vector<string> tokenize(const string& filename, const char delimiter){
+    vector<string> result;
+    string token;
+    stringstream ss(filename);
+
+    while(getline(ss, token, delimiter)){
+        result.push_back(token);
+    }
+    return result;
+}

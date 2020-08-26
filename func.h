@@ -9,9 +9,10 @@
 #include<io.h>
 #include<string>
 #include<vector>
+#include<sstream>
 
 using namespace std;
 
 vector<string> GetFiles(const string& location, const string& _filter);
-
+vector<string> tokenize(const string& filename, const char delimiter);
 #endif //SCORINGC_FUNC_H
