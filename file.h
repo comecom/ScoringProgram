@@ -15,11 +15,14 @@ class file {
 private:
     string filepath;
 public:
-
     //constructor
     file(string file_path){
         filepath = file_path;
         cout<<"constructor "+filepath<<endl;
+    };
+    //destructor
+    ~file(){
+        cout<<"destructor"<<endl;
     };
 
     //function

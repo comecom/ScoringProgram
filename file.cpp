@@ -7,18 +7,44 @@
 
 //execute python file
 void file::executeFile() {
+    int compile_flag, exe_flag;
 
     //compile : gcc -o 20151625.exe 20151625.c
-    printf("compile\n");
-
+    cout<<"compile"<<endl;
     string compile_command = "gcc -o ";
     compile_command = compile_command + filepath + ".exe " + filepath + ".c";
-    system(compile_command.c_str());
+    compile_flag = system(compile_command.c_str());
+    cout<<compile_flag<<endl;
 
-    //execute : 20151625.exe
-    printf("execute\n");
-    string exe_command = filepath + ".exe";
-    system(exe_command.c_str());
+    if(compile_flag == 0){
+
+        //execute : 20151625.exe
+        cout<<"execute"<<endl;
+        string exe_command = filepath + ".exe";
+
+        //20151625.exe -> 20151625_output.txt (store result)
+        exe_flag = system((exe_command + " > " + filepath + "_output.txt").c_str());
+
+        if(exe_flag == 0);
+        else{
+            cout<<"runtime error"<<endl;
+
+            //write "runtime error" in 20151625_output.txt file
+            ofstream writeFile;
+            writeFile.open(filepath + "_output.txt");
+            writeFile.write("runtime error", 13);
+            writeFile.close();
+        }
+    }
+    else{
+        cout<<"compile error"<<endl;
+
+        //write "compile error" in 20151625.txt file
+        ofstream writeFile;
+        writeFile.open(filepath + "_output.txt");
+        writeFile.write("compile error", 13);
+        writeFile.close();
+    }
 }
 
 //get file content

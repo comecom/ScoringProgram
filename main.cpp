@@ -34,10 +34,19 @@ int main()
         //execute with filepath
         f.executeFile();
 
+        //잠시 대기 (나중에 개발)
         //get file content with filepath
-        f.getFile();
+        //f.getFile();
     }
-    cout<<"finished"<<endl;
+    cout<<"finished\n"<<endl;
 
+    //delete .exe files
+    vector<string> del_files = GetFiles(location, "*.exe");
+    for(iter = del_files.begin();iter!=del_files.end();iter++){
+        cout<<"del : "<<*iter<<endl;
+        string del_filename = *iter;
+        string del_filepath = location + del_filename;
+        remove(del_filepath.c_str());//remove target .exe file (delete 20151625.exe)
+    }
     return 0;
 }
