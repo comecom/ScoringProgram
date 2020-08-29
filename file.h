@@ -13,6 +13,7 @@ using namespace std;
 
 class file {
 private:
+    //filepath = "C:/Users/immer_000/Desktop/c_test/"20151625"
     string filepath;
 public:
     //constructor
@@ -26,7 +27,7 @@ public:
     };
 
     //function
-    void executeFile();
+    void executeFile(string input_flag, string location);
     void getFile();
 };
 

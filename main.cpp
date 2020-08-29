@@ -7,7 +7,13 @@
 
 int main()
 {
-    string location = "C:/Users/immer_000/Desktop/c_test/";
+    //.c file location
+    string location = "C:/Users/immer_000/Desktop/c2_test/";
+
+    //input file flag : exist->yes, not exist->no
+    string input_flag;
+    cout<<"Do you need input file?? Seriously?? (yes/no) ";
+    cin>>input_flag;//(yes/no)
 
     //files = [20151234.c, 20151625.c ... ]    all .c files in vector "files"
     vector<string> files = GetFiles(location, "*.c");//file filter = '.c'
@@ -32,7 +38,7 @@ int main()
         file f = file(filepath);
 
         //execute with filepath
-        f.executeFile();
+        f.executeFile(input_flag, location);
 
         //잠시 대기 (나중에 개발)
         //get file content with filepath
@@ -48,5 +54,8 @@ int main()
         string del_filepath = location + del_filename;
         remove(del_filepath.c_str());//remove target .exe file (delete 20151625.exe)
     }
+
+    //get _output.txt file
+
     return 0;
 }
