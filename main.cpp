@@ -12,7 +12,7 @@ int main()
 
     //input file flag : exist->yes, not exist->no
     string input_flag;
-    cout<<"Do you need input file?? Seriously?? (yes/no) ";
+    cout<<"Do you need input file?? Seriously?? (yes/no)";
     cin>>input_flag;//(yes/no)
 
     //files = [20151234.c, 20151625.c ... ]    all .c files in vector "files"
@@ -40,6 +40,9 @@ int main()
         //execute with filepath
         f.executeFile(input_flag, location);
 
+        //compare _output.txt file to answer.txt file
+        compare_to_answer(location, tokens[0]);
+
         //잠시 대기 (나중에 개발)
         //get file content with filepath
         //f.getFile();
@@ -54,8 +57,6 @@ int main()
         string del_filepath = location + del_filename;
         remove(del_filepath.c_str());//remove target .exe file (delete 20151625.exe)
     }
-
-    //get _output.txt file
 
     return 0;
 }

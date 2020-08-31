@@ -15,5 +15,6 @@ using namespace std;
 
 vector<string> GetFiles(const string& location, const string& _filter);
 vector<string> tokenize(const string& filename, const char delimiter);
+void compare_to_answer(const string& location, const string& file_token);
 
 #endif //SCORINGC_FUNC_H
