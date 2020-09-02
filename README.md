@@ -8,8 +8,8 @@ Window 8.1
 - 20150001_p1.c
  > 학번 : 20150001 <br>
  > 실습 : p1 (첫 번째 실습) <br>
- > .c : extension .c file <br>
+ > extension : .c file <br>
 - 20150001_p2.c
  > 학번 : 20150001 <br>
  > 실습 : p2 (두 번째 실습) <br>
- > .c : extension .c file <br>
+ > extension : .c file <br>
