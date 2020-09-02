@@ -27,7 +27,7 @@ public:
     };
 
     //function
-    void executeFile(string input_flag, string location);
+    void executeFile(string input_flag, string location, int p);
     void getFile();
 };
 

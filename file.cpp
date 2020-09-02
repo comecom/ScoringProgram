@@ -6,7 +6,7 @@
 #define MAX_LINE 200 //max line size for one code line
 
 //execute python file
-void file::executeFile(string input_flag, string location) {
+void file::executeFile(string input_flag, string location, int p) {
     int compile_flag, exe_flag;
 
     //compile : gcc -o 20151625.exe 20151625.c
@@ -29,9 +29,8 @@ void file::executeFile(string input_flag, string location) {
             exe_flag = system((exe_command + " > " + filepath + "_output.txt").c_str());
         }
         else{
-            cout<<"really same?? good"<<endl;
             //20151625.exe needs "input.txt" file -> make ".._output.txt" file
-            exe_flag = system((exe_command + " < " + location + "input.txt > " + filepath + "_output.txt").c_str());
+            exe_flag = system((exe_command + " < " + location + "input_p" + to_string(p) + ".txt > " + filepath + "_output.txt").c_str());
         }
 
         if(exe_flag == 0);
@@ -61,7 +60,7 @@ void file::getFile() {
     char inputString[MAX_LINE];
     ifstream inFile(filepath + ".c"); //filepath + '.c' = "C:/..../c_test/20151625.c"
 
-    while(!inFile.eof()){
+    while(inFile){
         inFile.getline(inputString, MAX_LINE);
         cout<<inputString<<endl; // each code line
     }

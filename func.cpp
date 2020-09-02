@@ -40,29 +40,29 @@ vector<string> tokenize(const string& filename, const char delimiter){
     return result;
 }
 
-//location : "C:/Users/immer_000/Desktop/c3_test/", file_token = "20151625"
-void compare_to_answer(const string& location, const string& file_token){
-    string answer = location + "answer.txt";
-    string output = location + file_token + "_output.txt";
+//location : "C:/Users/immer_000/Desktop/c_test/", file_token = "20151625_p1", p : practice number
+int compare_to_answer(const string& location, const string& file_token, int p){
+    string answer = location + "answer_p"+to_string(p)+".txt"; //answer_p1.txt
+    string output = location + file_token + "_output.txt"; //20151625_p1_output.txt
 
     ifstream outputFile(output);
     ifstream answerFile(answer);
 
-    char output_buf[100][100];
-    char answer_buf[100][100];
+    char output_buf[100][200];
+    char answer_buf[100][200];
     int line;
 
     //store output to "output_buf"
     line = 0;
-    while(!outputFile.eof()){
-        outputFile.getline(output_buf[line], 100);
+    while(outputFile){
+        outputFile.getline(output_buf[line], 200);
         line++;
     }
 
     //store answer to "answer_buf"
     line = 0;
-    while(!answerFile.eof()){
-        answerFile.getline(answer_buf[line], 100);
+    while(answerFile){
+        answerFile.getline(answer_buf[line], 200);
         line++;
     }
 
@@ -83,14 +83,23 @@ void compare_to_answer(const string& location, const string& file_token){
 
         if(str1!=str2){
             cout<<"i : "<<i<<endl;
+
+            //wrong answer
             flag = 0;
+
+            //compile error
+            if(i==0 && str2=="compile error")
+                flag = 2;
+            //runtime error
+            if(i==0 && str2=="runtime error")
+                flag = 3;
+
             break;
         }
     }
-    if(flag)
+    if(flag == 1)
         cout<<"Correct!!"<<endl;
     else cout<<"Wrong..."<<endl;
 
-    //upload to excel file
-    //TODO
+    return flag;
 }
