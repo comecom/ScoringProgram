@@ -9,7 +9,7 @@
 #define Student_number 12
 
 int PS[Practice_number] = {10, 10};//practice score (ex. p1 score : 10, p2 score : 10)
-int result_matrix[Student_number][Practice_number+2];
+string result_matrix[Student_number][Practice_number+2];
 int students[Student_number] = {//testset
         20131415,
         20150001,
@@ -31,14 +31,14 @@ int main()
     string location = "C:/Users/immer_000/Desktop/c_test/";
 
     //initialize result_matrix
-    //result_matrix = [[20151625, 0, 0, 0],
-    //                 [20150001, 0, 0, 0],
-    //                 [20150002, 0, 0, 0]
+    //result_matrix = [['20151625', '0(x)', '0(x)', '0(x)'],
+    //                 ['20150001', '0(x)', '0(x)', '0(x)'],
+    //                 ['20150002', '0(x)', '0(x)', '0(x)'],
     //                 ...]
     for(int s=0;s<Student_number;s++){
-        result_matrix[s][0]=students[s];
+        result_matrix[s][0]=to_string(students[s]);
         for(int i=1;i<=Practice_number+1;i++)
-            result_matrix[s][i]=0;
+            result_matrix[s][i] = "0(x)";
     }
 
     //files[0] = [20151234_p1.c, 20151234_p2.c, 20151625_p1.c, 20151625_p2.c ... ] : all .c files
@@ -118,30 +118,34 @@ int main()
             cout<<"flag : "<<output_flag<<endl;
 
             //get score
-            int score;
+            string score_reason;
             if(output_flag==0)
-                score = PS[p-1]/2;//run but wrong answer (part score)
+                score_reason = to_string(PS[p-1]/2) + "(w)";//run but wrong answer (part score)
             else if(output_flag==1)
-                score = PS[p-1];//correct answer
+                score_reason = to_string(PS[p-1]) + "(o)";//correct answer
+            else if(output_flag==2)
+                score_reason = "0(c)"; //compile error
             else
-                score = 0;//compile error || runtime error
+                score_reason = "0(r)"; //runtime error
 
             //store result in result_matrix
             int s_idx;
             for(int i=0;i<Student_number;i++){
-                if(to_string(result_matrix[i][0]) == id_practice[0]){
+                if(result_matrix[i][0] == id_practice[0]){
                     s_idx = i;
                     break;
                 }
             }
-            result_matrix[s_idx][p] = score;
+            result_matrix[s_idx][p] = score_reason;
 
             if(p==Practice_number){
                 //store total score in result_matrix
                 int total_score = 0;
-                for(int i=1;i<=Practice_number;i++)
-                    total_score += result_matrix[s_idx][i];
-                result_matrix[s_idx][Practice_number+1] = total_score;
+                for(int i=1;i<=Practice_number;i++) {
+                    vector<string> score_v = tokenize(result_matrix[s_idx][i], '(');//10(0) -> ["10", "0)"] : score_v
+                    total_score += stoi(score_v[0]); //score_v[0] = "10"
+                }
+                result_matrix[s_idx][Practice_number+1] = to_string(total_score);
             }
 
             //잠시 대기 (나중에 개발)
@@ -164,9 +168,9 @@ int main()
     result.open(location + "result.txt", ios::app);
     if(result.is_open()){
         for(int s=0;s<Student_number;s++){
-            string line = to_string(result_matrix[s][0]);
+            string line = result_matrix[s][0];
             for(int i=1;i<=Practice_number+1;i++)
-                line += ('\t'+ to_string(result_matrix[s][i]));
+                line += ('\t'+ result_matrix[s][i]);
             line += '\n';
 
             result.write(line.c_str(), line.length());
