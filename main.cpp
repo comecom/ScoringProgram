@@ -41,9 +41,9 @@ int main()
             result_matrix[s][i] = "0(x)";
     }
 
-    //files[0] = [20151234_p1.c, 20151234_p2.c, 20151625_p1.c, 20151625_p2.c ... ] : all .c files
-    //files[1] = [20151234_p1.c, 20151625_p1.c ...] : practice 1 .c files
-    //files[2] = [20151234_p2.c, 20151625_p2.c ...] : practice 2 .c files
+    //files[0] = [cp01_20151234_p1.c, cp01_20151234_p2.c, cp01_20151625_p1.c, cp01_20151625_p2.c ... ] : all .c files
+    //files[1] = [cp01_20151234_p1.c, cp01_20151625_p1.c ...] : practice 1 .c files
+    //files[2] = [cp01_20151234_p2.c, cp01_20151625_p2.c ...] : practice 2 .c files
     vector<string> files[3];
     files[0] = GetFiles(location, "*.c");//file filter = '.c'
 
@@ -51,10 +51,10 @@ int main()
     for(iter=files[0].begin();iter!=files[0].end();iter++){
         string filename = *iter;
         //make files[1] vector<string>
-        if(0<=filename.find("p1")&&filename.find("p1")<=12)
+        if(0<=filename.find("p1")&&filename.find("p1")<=15)
             files[1].push_back(filename);
         //make files[2] vector<string?
-        if(0<=filename.find("p2")&&filename.find("p2")<=12)
+        if(0<=filename.find("p2")&&filename.find("p2")<=15)
             files[2].push_back(filename);
     }
     //connect with 'result.txt'
@@ -86,19 +86,19 @@ int main()
         cout<<"Scoring start for PRACTICE " + to_string(p)<<endl;
         for(iter=files[p].begin();iter!=files[p].end();iter++) {
 
-            // filename = "20151625_p1.c"
+            // filename = "cp01_20151625_p1.c"
             string filename = *iter;
 
-            //tokens = [filename, extension]    ex) 20151625.c -> ['20151625', 'c']
-            //tokens[0] = "20151625_p1"
+            //tokens = [filename, extension]    ex) cp01_20151625_p1.c -> ['cp01_20151625_p1', 'c']
+            //tokens[0] = "cp01_20151625_p1"
             //tokens[1] = ".c"
             vector<string> tokens = tokenize(filename, '.');
 
-            //token[0] = "20151625_p1"
-            //id_practice = ['20151625', 'p1']
-            vector<string> id_practice = tokenize(tokens[0], '_');
+            //token[0] = "cp01_20151625_p1"
+            //id_practice = ['cp01', '20151625', 'p1']
+            vector<string> p_id_num = tokenize(tokens[0], '_');
 
-            //filepath = "C:/Users/immer_000/Desktop/c_test/"20151625_p1"
+            //filepath = "C:/Users/immer_000/Desktop/c_test/"cp01_20151625_p1"
             string filepath = location + tokens[0];
 
             //make file object
@@ -131,7 +131,7 @@ int main()
             //store result in result_matrix
             int s_idx;
             for(int i=0;i<Student_number;i++){
-                if(result_matrix[i][0] == id_practice[0]){
+                if(result_matrix[i][0] == p_id_num[1]){
                     s_idx = i;
                     break;
                 }
