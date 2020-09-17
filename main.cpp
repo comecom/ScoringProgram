@@ -6,29 +6,59 @@
 #include "file.cpp"
 
 #define Practice_number 2
-#define Student_number 12
+#define Student_number 42
 
-int PS[Practice_number] = {10, 10};//practice score (ex. p1 score : 10, p2 score : 10)
+int PS[Practice_number] = {5, 5};//practice score (ex. p1 score : 5, p2 score : 5)
 string result_matrix[Student_number][Practice_number+2];
 int students[Student_number] = {//testset
-        20131415,
-        20150001,
-        20150002,
-        20151111,
-        20151515,
-        20151625,
-        20151666,
-        20170835,
-        20181123,
-        20191919,
-        20201020,
-        20202020
+        20181590,
+        20201546,
+        20201548,
+        20201550,
+        20201553,
+        20201556,
+        20201558,
+        20201560,
+        20201563,
+        20201566,
+        20201570,
+        20201573,
+        20201576,
+        20201578,
+        20201580,
+        20201583,
+        20201586,
+        20201590,
+        20201593,
+        20201596,
+        20201598,
+        20201600,
+        20201606,
+        20201608,
+        20201610,
+        20201613,
+        20201616,
+        20201618,
+        20201623,
+        20201630,
+        20201632,
+        20201633,
+        20201636,
+        20162003,
+        20201640,
+        20201643,
+        20201646,
+        20201648,
+        20201650,
+        20201653,
+        20201656,
+        20201658
 };
 
 int main()
 {
     //.c file location
-    string location = "C:/Users/immer_000/Desktop/c_test/";
+    string location = "C:/Users/immer_000/Desktop/c2_test/";
 
     //initialize result_matrix
     //result_matrix = [['20151625', '0(x)', '0(x)', '0(x)'],
@@ -41,9 +71,9 @@ int main()
             result_matrix[s][i] = "0(x)";
     }
 
-    //files[0] = [cp01_20151234_p1.c, cp01_20151234_p2.c, cp01_20151625_p1.c, cp01_20151625_p2.c ... ] : all .c files
-    //files[1] = [cp01_20151234_p1.c, cp01_20151625_p1.c ...] : practice 1 .c files
-    //files[2] = [cp01_20151234_p2.c, cp01_20151625_p2.c ...] : practice 2 .c files
+    //files[0] = [[김땡땡-20151234]cp01_20151234_p1-1.c, [김땡땡-20151234]cp01_20151234_p2-0.c, ... ] : all .c files
+    //files[1] = [[김땡땡-20151234]cp01_20151234_p1-1.c, cp01_20151625_p1.c ...] : practice 1 .c files
+    //files[2] = [[김땡땡-20151234]cp01_20151234_p2-0.c, cp01_20151625_p2.c ...] : practice 2 .c files
     vector<string> files[3];
     files[0] = GetFiles(location, "*.c");//file filter = '.c'
 
@@ -51,14 +81,14 @@ int main()
     for(iter=files[0].begin();iter!=files[0].end();iter++){
         string filename = *iter;
         //make files[1] vector<string>
-        if(0<=filename.find("p1")&&filename.find("p1")<=15)
+        if(0<=filename.find("p1")&&filename.find("p1")<=filename.length())
             files[1].push_back(filename);
         //make files[2] vector<string?
-        if(0<=filename.find("p2")&&filename.find("p2")<=15)
+        if(0<=filename.find("p2")&&filename.find("p2")<=filename.length())
             files[2].push_back(filename);
     }
     //connect with 'result.txt'
-    //initial write "studentID p1(10) p2(10) total(20)"
+    //initial write "studentID p1(5) p2(5) total(10)"
     ofstream result;
     result.open(location + "result.txt", ios::out);
     if(result.is_open()){
@@ -86,19 +116,19 @@ int main()
         cout<<"Scoring start for PRACTICE " + to_string(p)<<endl;
         for(iter=files[p].begin();iter!=files[p].end();iter++) {
 
-            // filename = "cp01_20151625_p1.c"
+            // filename = "[김땡땡-20151234]cp01_20151625_p1-1.c"
             string filename = *iter;
 
-            //tokens = [filename, extension]    ex) cp01_20151625_p1.c -> ['cp01_20151625_p1', 'c']
-            //tokens[0] = "cp01_20151625_p1"
+            //tokens = [filename, extension]    ex) [김땡땡-20151234]cp01_20151625_p1.c -> ['[김땡땡-20151234]cp01_20151625_p1-1', 'c']
+            //tokens[0] = "[김땡땡-20151234]cp01_20151625_p1-1"
             //tokens[1] = ".c"
             vector<string> tokens = tokenize(filename, '.');
 
-            //token[0] = "cp01_20151625_p1"
-            //id_practice = ['cp01', '20151625', 'p1']
+            //token[0] = "[김땡땡-20151234]cp01_20151625_p1-1"
+            //p_id_num = ['[김땡땡-20151234]cp01', '20151625', 'p1-1']
             vector<string> p_id_num = tokenize(tokens[0], '_');
 
-            //filepath = "C:/Users/immer_000/Desktop/c_test/"cp01_20151625_p1"
+            //filepath = "C:/Users/immer_000/Desktop/c_test/"[김땡땡-20151234]cp01_20151625_p1-1"
             string filepath = location + tokens[0];
 
             //make file object
@@ -120,7 +150,7 @@ int main()
             //get score
             string score_reason;
             if(output_flag==0)
-                score_reason = to_string(PS[p-1]/2) + "(w)";//run but wrong answer (part score)
+                score_reason = "0(w)";//run but wrong answer (part score)
             else if(output_flag==1)
                 score_reason = to_string(PS[p-1]) + "(o)";//correct answer
             else if(output_flag==2)
